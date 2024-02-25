@@ -5,6 +5,12 @@ class TodoApplication:
 
     def __init__(self):
         self.todoList = []
+        self.commands = {
+            "add": self.addTask,
+            "remove": self.removeTask,
+            "list": self.listItems,
+            "exit": self.exit,
+        }
 
     def addTask(self):
         taskToAdd = input("Enter a task to complete: ")
@@ -24,14 +30,6 @@ class TodoApplication:
         print("Exiting...")
         sys.exit()
 
-    def commands(self):
-        commands = {
-            "add": self.addTask,
-            "remove": self.removeTask,
-            "list": self.listItems,
-            "exit": self.exit,
-        }
-
 
 # Instantiating/Begin
 start = TodoApplication()
@@ -39,15 +37,9 @@ start = TodoApplication()
 while True:
     action = input("What would you like to do.\nAdd | Remove | List | Exit: ")
 
-    if action == "Add" or action == "add":
-        start.addTask()
-        continue
-    elif action == "Remove" or action == "remove":
-        start.removeTask()
-        continue
-    elif action == "Exit" or action == "exit":
-        exit()
-    elif action == "List" or action == "list":
-        start.listItems()
+    if action in ("Exit", "exit"):
+        start.exit()
+        break
     else:
+        start.commands[action]()
         continue
