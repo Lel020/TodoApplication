@@ -1,3 +1,6 @@
+import sys
+
+
 class TodoApplication:
 
     def __init__(self):
@@ -19,9 +22,18 @@ class TodoApplication:
 
     def exit(self):
         print("Exiting...")
-        TodoApplication().exit()
+        sys.exit()
+
+    def commands(self):
+        commands = {
+            "add": self.addTask,
+            "remove": self.removeTask,
+            "list": self.listItems,
+            "exit": self.exit,
+        }
 
 
+# Instantiating/Begin
 start = TodoApplication()
 
 while True:
